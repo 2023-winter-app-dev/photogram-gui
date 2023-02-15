@@ -1,0 +1,52 @@
+<nav>
+  <ul>
+    <li>
+      <a href="/users">Users</a>
+    </li>
+    <li>
+      <a href="/photos">Photos</a>
+    </li>
+  </ul>
+</nav>
+
+<h1>List of users</h1>
+
+<form action="/add_user">
+  <label for="username_input">Username</label>
+  <input id="username_input" type="text" name="username_input" placeholder="Enter a username...">
+  <button>Add user</button>
+</form>
+<hr>
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Username
+    </th>
+
+    <th>
+      
+    </th>
+
+  </tr>
+  <% @user_array = User.all.order({:username => :asc}) %>
+  <% @user_array.each do |user| %>
+  <tr>
+    <th>
+      <%= user.id %>
+    </th>
+
+    <th>
+      <%= user.username %>
+    </th>
+
+    <th>
+      <a href="/users/<%=user.username%>">Show details</a>
+    </th>
+
+  </tr>
+  <% end %>
+</table>
